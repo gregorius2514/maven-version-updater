@@ -11,6 +11,7 @@ repositories {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+     compile 'org.jetbrains.kotlin:kotlin-stdlib:1.3.20'
 }
 
 compileKotlin {
@@ -18,4 +19,14 @@ compileKotlin {
 }
 compileTestKotlin {
     kotlinOptions.jvmTarget = "1.8"
+}
+
+apply plugin: "kotlin"
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'MavenVersionUpdaterKt'
+    }
+
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
 }
