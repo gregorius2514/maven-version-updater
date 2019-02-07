@@ -2,28 +2,31 @@ import org.w3c.dom.NodeList
 import org.xml.sax.InputSource
 import java.io.File
 import java.io.StringReader
-import java.lang.RuntimeException
 import java.util.regex.Pattern
 import javax.xml.parsers.DocumentBuilderFactory
+import javax.xml.transform.TransformerFactory
+import javax.xml.transform.dom.DOMSource
+import javax.xml.transform.stream.StreamResult
 import javax.xml.xpath.XPathConstants
 import javax.xml.xpath.XPathFactory
-import javax.xml.transform.stream.StreamResult
-import javax.xml.transform.dom.DOMSource
-import javax.xml.transform.TransformerFactory
 
 fun main(args: Array<String>) {
-   
+
     if (args.size != 1) {
-       throw RuntimeException("Required one argument with maven project path") 
+        throw RuntimeException("Required one argument with maven project path")
     }
-    
+
     File(args[0]).walk().forEach { file ->
-        if ("pom.xml".equals(file.name))
+        if ("pom.xml".equals(file.name)) {
             println(file)
+            updateVersion(file)
+        }
     }
 
-    val xmlFile = File("src/main/resources/pom.xml")
 
+}
+
+fun updateVersion(xmlFile: File) {
     val domXmlFactory = DocumentBuilderFactory.newInstance()
     val domXmlBuilder = domXmlFactory.newDocumentBuilder()
     val xmlInputStream = InputSource(StringReader(xmlFile.readText()))
@@ -60,5 +63,4 @@ fun main(args: Array<String>) {
     }
 
     println("version number: $projectVersion, version: $version")
-
 }
