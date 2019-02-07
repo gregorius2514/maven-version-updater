@@ -1,66 +1,27 @@
-import org.w3c.dom.NodeList
-import org.xml.sax.InputSource
 import java.io.File
-import java.io.StringReader
-import java.util.regex.Pattern
-import javax.xml.parsers.DocumentBuilderFactory
-import javax.xml.transform.TransformerFactory
-import javax.xml.transform.dom.DOMSource
-import javax.xml.transform.stream.StreamResult
-import javax.xml.xpath.XPathConstants
-import javax.xml.xpath.XPathFactory
 
 fun main(args: Array<String>) {
 
     if (args.size != 1) {
         throw RuntimeException("Required one argument with maven project path")
     }
+    val xmlParser = XmlParser()
+    val mavenPomVersionFinder = MavenPomVersionFinder()
+    val mavenPomVersionGenerator = MavenPomNextVersionGenerator()
+    val mavenPomVersionUpdater = MavenPomVersionUpdater()
 
-    File(args[0]).walk().forEach { file ->
-        if ("pom.xml".equals(file.name)) {
-            println(file)
-            updateVersion(file)
+    File(args[0]).walk().forEach { pomXmlFile ->
+        if ("pom.xml".equals(pomXmlFile.name)) {
+            val xmlDom = xmlParser.parseXml(pomXmlFile)
+            val pomVersionElement = mavenPomVersionFinder.findPomVersionTag(xmlDom)
+            val currentPomVersion = mavenPomVersionFinder.getPomVersion(pomVersionElement)
+
+            val nextPomVersion = mavenPomVersionGenerator.generateNextPomVersion(currentPomVersion) ?: ""
+            mavenPomVersionUpdater.updateNotEmptyPomVersion(pomVersionElement, nextPomVersion)
+
+            mavenPomVersionUpdater.rewritePomFileWithUpdatedPomVersion(xmlDom, pomXmlFile)
+            println("current pom version: $currentPomVersion, next pom version: $nextPomVersion, file path: $pomXmlFile")
         }
     }
-
-
 }
 
-fun updateVersion(xmlFile: File) {
-    val domXmlFactory = DocumentBuilderFactory.newInstance()
-    val domXmlBuilder = domXmlFactory.newDocumentBuilder()
-    val xmlInputStream = InputSource(StringReader(xmlFile.readText()))
-    val xmlDom = domXmlBuilder.parse(xmlInputStream)
-
-
-    val xpathFactory = XPathFactory.newInstance()
-    val xpath = xpathFactory.newXPath()
-
-    val pomVersionRegex = "//version"
-    val pomVersionElement = xpath.evaluate(pomVersionRegex, xmlDom, XPathConstants.NODESET) as NodeList
-    val projectVersion = pomVersionElement.item(0).textContent
-
-    val searchVersionRegex = Pattern.compile("([0-9.]+)(-SNAPSHOT)?")
-    val matcher = searchVersionRegex.matcher(projectVersion)
-
-    matcher.find()
-    val version = matcher.group(1)
-
-    if (version.contains(".")) {
-        val versions = version.split(".")
-        val mainorVersion = versions.get(versions.size - 1).toInt()
-
-        val nextVersion = version.replace(".$mainorVersion", ".${mainorVersion.inc()}")
-        val nextProjectVersion = projectVersion.replace(version, nextVersion)
-        println("next: $nextProjectVersion")
-
-        pomVersionElement.item(0).textContent = nextProjectVersion
-
-        val xformer = TransformerFactory.newInstance().newTransformer()
-        xformer.transform(DOMSource(xmlDom), StreamResult(xmlFile))
-    } else {
-        println("dots not detected")
-    }
-
-    println("version number: $projectVersion, version: $version")
-}
