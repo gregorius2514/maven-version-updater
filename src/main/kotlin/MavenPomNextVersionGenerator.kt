@@ -17,9 +17,11 @@ class MavenPomNextVersionGenerator {
             if (mainorVersionNumber.isBlank()) {
                 return null
             }
-            val mainorVersion =  mainorVersionNumber.toInt()
+            val mainorVersion =  mainorVersionNumber.toInt().inc()
+            // todo do it with kotlin way (better way)
+            val nextProjectVersion = "${versions.get(0)}.${versions.get(1)}.$mainorVersion"
 
-            val nextVersion = version.replace(".$mainorVersion", ".${mainorVersion.inc()}")
+            val nextVersion = version.replace("$version", "$nextProjectVersion")
             return projectPomVersion.replace(version, nextVersion)
         }
         // fixme replace returning null with something safer
