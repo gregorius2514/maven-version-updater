@@ -12,15 +12,19 @@ fun main(args: Array<String>) {
 
     File(args[0]).walk().forEach { pomXmlFile ->
         if ("pom.xml".equals(pomXmlFile.name)) {
+            println("Checked pom.xml file: ${pomXmlFile.absolutePath}")
+            
             val xmlDom = xmlParser.parseXml(pomXmlFile)
             val pomVersionElement = mavenPomVersionFinder.findPomVersionTag(xmlDom)
             val currentPomVersion = mavenPomVersionFinder.getPomVersion(pomVersionElement)
 
             val nextPomVersion = mavenPomVersionGenerator.generateNextPomVersion(currentPomVersion) ?: ""
-            mavenPomVersionUpdater.updateNotEmptyPomVersion(pomVersionElement, nextPomVersion)
+            if (nextPomVersion.isNotBlank()) {
+                mavenPomVersionUpdater.updateNotEmptyPomVersion(pomVersionElement, nextPomVersion)
 
-            mavenPomVersionUpdater.rewritePomFileWithUpdatedPomVersion(xmlDom, pomXmlFile)
-            println("current pom version: $currentPomVersion, next pom version: $nextPomVersion, file path: $pomXmlFile")
+                mavenPomVersionUpdater.rewritePomFileWithUpdatedPomVersion(xmlDom, pomXmlFile)
+                println("current pom version: $currentPomVersion, next pom version: $nextPomVersion, file path: $pomXmlFile")
+            }
         }
     }
 }

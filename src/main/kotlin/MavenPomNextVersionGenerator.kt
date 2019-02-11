@@ -13,7 +13,11 @@ class MavenPomNextVersionGenerator {
 
         if (version.contains(".")) {
             val versions = version.split(".")
-            val mainorVersion = versions.get(versions.size - 1).toInt()
+            val mainorVersionNumber = versions.get(versions.size - 1)
+            if (mainorVersionNumber.isBlank()) {
+                return null
+            }
+            val mainorVersion =  mainorVersionNumber.toInt()
 
             val nextVersion = version.replace(".$mainorVersion", ".${mainorVersion.inc()}")
             return projectPomVersion.replace(version, nextVersion)

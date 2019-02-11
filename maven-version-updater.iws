@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="01db2343-57e2-4353-98dc-9526c68428d6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/MavenPomNextVersionGenerator.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/MavenPomVersionFinder.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/MavenPomVersionUpdater.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/XmlParser.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/maven-version-updater.iws" beforeDir="false" afterPath="$PROJECT_DIR$/maven-version-updater.iws" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/MavenVersionUpdater.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/MavenVersionUpdater.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/MavenPomNextVersionGenerator.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/MavenPomNextVersionGenerator.kt" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -70,10 +64,10 @@
   <component name="FileEditorManager">
     <leaf>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/kotlin/MavenVersionUpdater.kt">
+        <entry file="file://$PROJECT_DIR$/src/main/kotlin/MavenPomNextVersionGenerator.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="156">
-              <caret line="21" column="36" selection-start-line="21" selection-start-column="36" selection-end-line="21" selection-end-column="36" />
+            <state relative-caret-position="272">
+              <caret line="17" column="26" selection-start-line="17" selection-start-column="26" selection-end-line="17" selection-end-column="26" />
             </state>
           </provider>
         </entry>
@@ -98,6 +92,11 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -107,13 +106,13 @@
         <option value="$PROJECT_DIR$/src/main/kotlin/MavenPomVersionUpdater.java" />
         <option value="$PROJECT_DIR$/src/main/kotlin/XmlParser.kt" />
         <option value="$PROJECT_DIR$/src/main/kotlin/MavenPomVersionFinder.kt" />
-        <option value="$PROJECT_DIR$/src/main/kotlin/MavenPomNextVersionGenerator.kt" />
         <option value="$PROJECT_DIR$/src/main/kotlin/MavenPomVersionUpdater.kt" />
         <option value="$PROJECT_DIR$/src/main/kotlin/MavenVersionUpdater.kt" />
+        <option value="$PROJECT_DIR$/src/main/kotlin/MavenPomNextVersionGenerator.kt" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="54" />
     <option name="y" value="22" />
     <option name="width" value="1173" />
@@ -127,54 +126,7 @@
       <autoscrollFromSource ProjectPane="true" />
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="maven-version-updater" type="b2602c69:ProjectViewProjectNode" />
-              <item name="maven-version-updater" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-            </path>
-            <path>
-              <item name="maven-version-updater" type="b2602c69:ProjectViewProjectNode" />
-              <item name="maven-version-updater" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="maven-version-updater" type="b2602c69:ProjectViewProjectNode" />
-              <item name="maven-version-updater" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-            </path>
-            <path>
-              <item name="maven-version-updater" type="b2602c69:ProjectViewProjectNode" />
-              <item name="maven-version-updater" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="maven-version-updater" type="b2602c69:ProjectViewProjectNode" />
-              <item name="maven-version-updater" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="META-INF" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="maven-version-updater" type="b2602c69:ProjectViewProjectNode" />
-              <item name="maven-version-updater" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="kotlin" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
-    </panes>
+    <panes />
   </component>
   <component name="PropertiesComponent">
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1549577181419" />
@@ -199,6 +151,15 @@
     </option>
   </component>
   <component name="RunManager" selected="Kotlin.MavenVersionUpdaterKt">
+    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType">
+      <module name="" />
+      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
+      <option name="PROGRAM_PARAMETERS" />
+      <predefined_log_file enabled="true" id="idea.log" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="Applet">
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
       <method v="2">
@@ -277,15 +238,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType">
-      <module name="" />
-      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
-      <option name="PROGRAM_PARAMETERS" />
-      <predefined_log_file enabled="true" id="idea.log" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <list>
       <item itemvalue="Gradle.maven-version-updater [jar]" />
       <item itemvalue="Gradle.maven-version-updater [build]" />
@@ -310,10 +262,18 @@
       <option name="presentableId" value="Default" />
       <updated>1549480903853</updated>
     </task>
+    <task id="LOCAL-00001" summary="Make fix when project version is not found in pom.xml">
+      <created>1549871330000</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1549871330000</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="54" y="22" width="1312" height="746" extended-state="6" />
+    <frame x="0" y="22" width="1920" height="1058" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.2527559" />
@@ -327,11 +287,11 @@
       <window_info anchor="bottom" id="Event Log" order="1" side_tool="true" />
       <window_info anchor="bottom" id="Build" order="2" weight="0.3284553" />
       <window_info anchor="bottom" id="Messages" order="3" weight="0.3294271" />
-      <window_info anchor="bottom" id="Version Control" order="4" weight="0.32854864" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="4" visible="true" weight="0.32783505" />
       <window_info anchor="bottom" id="Message" order="5" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Find" order="7" />
-      <window_info active="true" anchor="bottom" id="Run" order="8" visible="true" weight="0.42264754" />
+      <window_info anchor="bottom" id="Run" order="8" weight="0.42264754" />
       <window_info anchor="bottom" id="Debug" order="9" weight="0.3997396" />
       <window_info anchor="bottom" id="Cvs" order="10" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="11" weight="0.4" />
@@ -403,6 +363,36 @@
         </entry>
       </map>
     </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list />
+          </value>
+        </entry>
+        <entry key="User">
+          <value>
+            <list />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Make fix when project version is not found in pom.xml" />
+    <option name="LAST_COMMIT_MESSAGE" value="Make fix when project version is not found in pom.xml" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/src/main/kotlin/MavenVersionUpdater.kt</url>
+          <line>27</line>
+          <properties />
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="evaluateExpression">
@@ -470,17 +460,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/kotlin/MavenPomVersionUpdater.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="64">
-          <caret line="4" column="4" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="4" />
-          <folding>
-            <element signature="e#134#135#0" expanded="true" />
-            <element signature="e#191#192#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/kotlin/MavenPomVersionUpdater.java" />
     <entry file="file://$PROJECT_DIR$/src/main/kotlin/XmlParser.kt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="112">
@@ -488,13 +468,6 @@
           <folding>
             <element signature="e#0#195#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/kotlin/MavenPomNextVersionGenerator.kt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="64">
-          <caret line="4" column="7" selection-start-line="4" selection-start-column="7" selection-end-line="4" selection-end-column="7" />
         </state>
       </provider>
     </entry>
@@ -520,8 +493,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/kotlin/MavenVersionUpdater.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="21" column="36" selection-start-line="21" selection-start-column="36" selection-end-line="21" selection-end-column="36" />
+        <state relative-caret-position="304">
+          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/kotlin/MavenPomNextVersionGenerator.kt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="17" column="26" selection-start-line="17" selection-start-column="26" selection-end-line="17" selection-end-column="26" />
         </state>
       </provider>
     </entry>
