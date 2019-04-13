@@ -18,7 +18,7 @@ fun main(args: Array<String>) {
             val pomVersionElement = mavenPomVersionFinder.findPomVersionTag(xmlDom)
             val currentPomVersion = mavenPomVersionFinder.getPomVersion(pomVersionElement)
 
-            val nextPomVersion = mavenPomVersionGenerator.generateNextPomVersion(currentPomVersion) ?: ""
+            val nextPomVersion = mavenPomVersionGenerator.generateNextPomVersion(currentPomVersion) 
             if (nextPomVersion.isNotBlank()) {
                 mavenPomVersionUpdater.updateNotEmptyPomVersion(pomVersionElement, nextPomVersion)
 
