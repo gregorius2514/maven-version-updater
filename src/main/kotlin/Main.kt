@@ -1,10 +1,14 @@
 import java.io.File
+import java.util.stream.Stream
 
 fun main(args: Array<String>) {
 
     if (args.size != 1) {
         throw RuntimeException("Required one argument with maven project path")
     }
+
+    val versionParamater = args.toMutableList().stream().filter { aaa -> aaa.equals("") }
+
     val xmlParser = XmlParser()
     val mavenPomVersionFinder = MavenPomVersionFinder()
     val mavenVersionGeneratorStrategy = MavenVersionGeneratorStrategy()
