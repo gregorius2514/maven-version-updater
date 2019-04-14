@@ -1,11 +1,11 @@
 import java.util.regex.Pattern
 
-class MavenPomNextVersionGenerator {
+class MavenPomNextVersionGenerator : MavenVersionGenerator {
 
     private val MAVEN_VERSION_GROUP = 1
     private val searchVersionRegex = Pattern.compile("([0-9.]+)(-SNAPSHOT)?")
 
-    fun generateNextPomVersion(projectPomVersion: String): String {
+    override fun generateNextPomVersion(projectPomVersion: String): String {
         val matcher = searchVersionRegex.matcher(projectPomVersion)
 
         matcher.find()

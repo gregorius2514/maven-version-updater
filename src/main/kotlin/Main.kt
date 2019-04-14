@@ -7,18 +7,19 @@ fun main(args: Array<String>) {
     }
     val xmlParser = XmlParser()
     val mavenPomVersionFinder = MavenPomVersionFinder()
-    val mavenPomVersionGenerator = MavenPomNextVersionGenerator()
+    val mavenVersionGeneratorStrategy = MavenVersionGeneratorStrategy()
     val mavenPomVersionUpdater = MavenPomVersionUpdater()
 
     File(args[0]).walk().forEach { pomXmlFile ->
         if ("pom.xml".equals(pomXmlFile.name)) {
             println("Checked pom.xml file: ${pomXmlFile.absolutePath}")
-            
+
             val xmlDom = xmlParser.parseXml(pomXmlFile)
             val pomVersionElement = mavenPomVersionFinder.findPomVersionTag(xmlDom)
             val currentPomVersion = mavenPomVersionFinder.getPomVersion(pomVersionElement)
 
-            val nextPomVersion = mavenPomVersionGenerator.generateNextPomVersion(currentPomVersion) 
+            val mavenVersionGenerator = mavenVersionGeneratorStrategy.createMavenVersionGenerator()
+            val nextPomVersion = mavenVersionGenerator.generateNextPomVersion(currentPomVersion)
             if (nextPomVersion.isNotBlank()) {
                 mavenPomVersionUpdater.updateNotEmptyPomVersion(pomVersionElement, nextPomVersion)
 
