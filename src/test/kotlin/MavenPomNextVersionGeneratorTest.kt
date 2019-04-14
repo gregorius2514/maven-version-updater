@@ -34,4 +34,16 @@ class MavenPomNextVersionGeneratorTest {
         val nextVersion = mavenPomNextVersionGenerator.generateNextPomVersion("1.1")
         Assert.assertEquals("1.2", nextVersion)
     }
+    
+    @Test
+    fun shouldGenerateNextVersion5() {
+        val nextVersion = mavenPomNextVersionGenerator.generateNextPomVersion("1")
+        Assert.assertEquals("2", nextVersion)
+    }
+    
+    @Test
+    fun shouldGenerateNextVersion6() {
+        val nextVersion = mavenPomNextVersionGenerator.generateNextPomVersion("1-SNAPSHOT")
+        Assert.assertEquals("2-SNAPSHOT", nextVersion)
+    }
 }

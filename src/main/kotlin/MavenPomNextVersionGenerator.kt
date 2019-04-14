@@ -10,6 +10,7 @@ class MavenPomNextVersionGenerator {
 
         matcher.find()
         val version = matcher.group(MAVEN_VERSION_GROUP)
+        var nextProjectVersion = ""
 
         if (version.contains(".")) {
             val versions = version.split(".")
@@ -19,11 +20,15 @@ class MavenPomNextVersionGenerator {
             }
             val mainorVersion = mainorVersionNumber.toInt().inc()
             // todo do it with kotlin way (better way)
-            val nextProjectVersion = "${versions.get(0)}.${versions.get(1)}.$mainorVersion"
-
-            val nextVersion = version.replace("$version", "$nextProjectVersion")
-            return projectPomVersion.replace(version, nextVersion)
+            if (versions.size == 3) {
+                nextProjectVersion = "${versions.get(0)}.${versions.get(1)}.$mainorVersion"
+            } else if (versions.size == 2) {
+                nextProjectVersion = "${versions.get(0)}.$mainorVersion"
+            }
+        } else {
+            nextProjectVersion = version.toInt().inc().toString()
         }
-        return ""
+        val nextVersion = version.replace("$version", "$nextProjectVersion")
+        return projectPomVersion.replace(version, nextVersion)
     }
 }
