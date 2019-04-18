@@ -34,15 +34,15 @@ class PomFileVersionUpdaterTest {
         testPomFile.copyTo(Paths.get(tempFolder.root.absolutePath, "pom.xml").toFile())
 
         val expectedPomFile = File("src/test/resources/updatedPomVersion/pom.xml")
-        val expectedPomFileContent = expectedPomFile.readLines()
+        val expectedPomFileContent = expectedPomFile.readText()
+
+        val actualPomFile = File(Paths.get(tempFolder.root.absolutePath, "pom.xml").toString())
 
         // when
-        pomFileVersionUpdater.updatePomVersion(testPomFile)
+        pomFileVersionUpdater.updatePomVersion(actualPomFile)
 
         // then
-        val actualPomFile = File(Paths.get(tempFolder.root.absolutePath, "pom.xml").toString())
-        val actualPomFileContent = actualPomFile.readLines()
-
-        Assert.assertEquals(actualPomFileContent, expectedPomFileContent)
+        val actualPomFileContent = actualPomFile.readText()
+        Assert.assertEquals(expectedPomFileContent, actualPomFileContent)
     }
 }

@@ -16,6 +16,8 @@ class XmlParser {
 
     fun parseXml(xmlFile: File): Document {
         val xmlInputStream = InputSource(StringReader(xmlFile.readText()))
-        return domXmlBuilder.parse(xmlInputStream)
+        val xmlDocument = domXmlBuilder.parse(xmlInputStream)
+        xmlDocument.xmlStandalone = true
+        return xmlDocument
     }
 }
