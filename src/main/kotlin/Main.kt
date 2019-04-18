@@ -1,5 +1,4 @@
 import java.io.File
-import java.util.stream.Stream
 
 fun main(args: Array<String>) {
 
@@ -7,12 +6,17 @@ fun main(args: Array<String>) {
         throw RuntimeException("Required one argument with maven project path")
     }
 
-    val versionParamater = args.toMutableList().stream().filter { aaa -> aaa.equals("") }
+//    todo Move belowe code to separate class. Then it can be tested easier.
+    val versionParamater = args.toMutableList().stream().filter { aaa -> aaa.contains("-setVersion=") }
+        .map { bbb -> bbb.replace("-setVersion=", "") }.findAny()
 
     val xmlParser = XmlParser()
     val mavenPomVersionFinder = MavenPomVersionFinder()
-    val mavenVersionGeneratorStrategy = MavenVersionGeneratorStrategy()
     val mavenPomVersionUpdater = MavenPomVersionUpdater()
+
+    // fixme Improve readability initialization mavenVersionGenerator
+    val mavenVersionGenerator = versionParamater.map { pomFixedVersion -> MavenFixedVersionGenerator(pomFixedVersion) }
+        .map { abc -> MavenPomNextVersionGenerator() }.orElseThrow()
 
     File(args[0]).walk().forEach { pomXmlFile ->
         if ("pom.xml".equals(pomXmlFile.name)) {
@@ -22,7 +26,6 @@ fun main(args: Array<String>) {
             val pomVersionElement = mavenPomVersionFinder.findPomVersionTag(xmlDom)
             val currentPomVersion = mavenPomVersionFinder.getPomVersion(pomVersionElement)
 
-            val mavenVersionGenerator = mavenVersionGeneratorStrategy.createMavenVersionGenerator()
             val nextPomVersion = mavenVersionGenerator.generateNextPomVersion(currentPomVersion)
             if (nextPomVersion.isNotBlank()) {
                 mavenPomVersionUpdater.updateNotEmptyPomVersion(pomVersionElement, nextPomVersion)
