@@ -1,8 +1,8 @@
 import org.junit.Assert
 import org.junit.Test
 
-class MainKtTest {
-
+class MainTest {
+    
     @Test
     fun shouldPassAndReturnTheSameMainFunctionArgs() {
         val testArgs = TestArgs()

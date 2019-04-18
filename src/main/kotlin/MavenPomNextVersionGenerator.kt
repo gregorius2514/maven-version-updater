@@ -19,7 +19,6 @@ class MavenPomNextVersionGenerator : MavenVersionGenerator {
                 return ""
             }
             val mainorVersion = mainorVersionNumber.toInt().inc()
-            // todo do it with kotlin way (better way)
             if (versions.size == 3) {
                 nextProjectVersion = "${versions.get(0)}.${versions.get(1)}.$mainorVersion"
             } else if (versions.size == 2) {

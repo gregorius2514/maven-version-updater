@@ -1,39 +1,34 @@
 import java.io.File
 
-fun main(args: Array<String>) {
+private const val POM_FILE_NAME = "pom.xml"
+private const val SET_VERSION_PARAMETER = "-setVersion="
 
-    if (args.size != 1) {
+fun main(arguments: Array<String>) {
+
+    if (arguments.size != 1) {
         throw RuntimeException("Required one argument with maven project path")
     }
-
-//    todo Move belowe code to separate class. Then it can be tested easier.
-    val versionParamater = args.toMutableList().stream().filter { aaa -> aaa.contains("-setVersion=") }
-        .map { bbb -> bbb.replace("-setVersion=", "") }.findAny()
-
     val xmlParser = XmlParser()
     val mavenPomVersionFinder = MavenPomVersionFinder()
     val mavenPomVersionUpdater = MavenPomVersionUpdater()
 
+    //    todo Move belowe code to separate class. Then it can be tested easier.
+    // todo extract lambda do function
+    val versionParameter = arguments.toMutableList().stream().filter { argument -> argument.contains("-setVersion=") }
+        .map { argument -> argument.replace(SET_VERSION_PARAMETER, "") }.findAny()
+
     // fixme Improve readability initialization mavenVersionGenerator
-    val mavenVersionGenerator = versionParamater.map { pomFixedVersion -> MavenFixedVersionGenerator(pomFixedVersion) }
-        .map { abc -> MavenPomNextVersionGenerator() }.orElseThrow()
+    val mavenVersionGenerator = versionParameter.map { pomFixedVersion -> MavenFixedVersionGenerator(pomFixedVersion) }
+        .map { MavenPomNextVersionGenerator() }.orElseThrow()
 
-    File(args[0]).walk().forEach { pomXmlFile ->
-        if ("pom.xml".equals(pomXmlFile.name)) {
-            println("Checked pom.xml file: ${pomXmlFile.absolutePath}")
+    val pomFileVersionUpdater =
+        PomFileVersionUpdater(xmlParser, mavenPomVersionFinder, mavenVersionGenerator, mavenPomVersionUpdater)
 
-            val xmlDom = xmlParser.parseXml(pomXmlFile)
-            val pomVersionElement = mavenPomVersionFinder.findPomVersionTag(xmlDom)
-            val currentPomVersion = mavenPomVersionFinder.getPomVersion(pomVersionElement)
-
-            val nextPomVersion = mavenVersionGenerator.generateNextPomVersion(currentPomVersion)
-            if (nextPomVersion.isNotBlank()) {
-                mavenPomVersionUpdater.updateNotEmptyPomVersion(pomVersionElement, nextPomVersion)
-
-                mavenPomVersionUpdater.rewritePomFileWithUpdatedPomVersion(xmlDom, pomXmlFile)
-                println("current pom version: $currentPomVersion, next pom version: $nextPomVersion, file path: $pomXmlFile")
-            }
+    File(arguments[0]).walk().forEach { pomXmlFile ->
+        if (POM_FILE_NAME == pomXmlFile.name) {
+            pomFileVersionUpdater.updatePomVersion(pomXmlFile)
         }
     }
 }
+
 
