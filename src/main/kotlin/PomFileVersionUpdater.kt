@@ -3,7 +3,7 @@ import java.io.File
 class PomFileVersionUpdater(
     private val xmlParser: XmlParser,
     private val mavenPomVersionFinder: MavenPomVersionFinder,
-    private val mavenPomVersionGenerator: MavenPomNextVersionGenerator,
+    private val mavenPomVersionGenerator: MavenVersionGenerator,
     private val mavenPomVersionUpdater: MavenPomVersionUpdater
 ) {
 

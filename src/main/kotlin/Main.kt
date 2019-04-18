@@ -3,6 +3,8 @@ import java.io.File
 private const val POM_FILE_NAME = "pom.xml"
 private const val SET_VERSION_PARAMETER = "-setVersion="
 
+// todo Change class'es prefix Maven -> Pom
+
 fun main(arguments: Array<String>) {
 
     if (arguments.size != 1) {
@@ -12,7 +14,7 @@ fun main(arguments: Array<String>) {
     val mavenPomVersionFinder = MavenPomVersionFinder()
     val mavenPomVersionUpdater = MavenPomVersionUpdater()
 
-    //    todo Move belowe code to separate class. Then it can be tested easier.
+    // todo Move below code to separate class. Then it can be tested easier.
     // todo extract lambda do function
     val versionParameter = arguments.toMutableList().stream().filter { argument -> argument.contains("-setVersion=") }
         .map { argument -> argument.replace(SET_VERSION_PARAMETER, "") }.findAny()
