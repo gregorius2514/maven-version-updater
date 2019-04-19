@@ -20,8 +20,13 @@ fun main(arguments: Array<String>) {
         .map { argument -> argument.replace(SET_VERSION_PARAMETER, "") }.findAny()
 
     // fixme Improve readability initialization mavenVersionGenerator
-    val mavenVersionGenerator = versionParameter.map { pomFixedVersion -> MavenFixedVersionGenerator(pomFixedVersion) }
-        .map { MavenPomNextVersionGenerator() }.orElseThrow()
+
+    var mavenVersionGenerator: MavenVersionGenerator
+    if (versionParameter.isPresent) {
+        mavenVersionGenerator = MavenFixedVersionGenerator(versionParameter.get())
+    } else {
+        mavenVersionGenerator = MavenPomNextVersionGenerator()
+    }
 
     val pomFileVersionUpdater =
         PomFileVersionUpdater(xmlParser, mavenPomVersionFinder, mavenVersionGenerator, mavenPomVersionUpdater)

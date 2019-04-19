@@ -26,7 +26,7 @@ apply plugin: "kotlin"
 
 jar {
     manifest {
-        attributes 'Main-Class': 'MavenVersionUpdaterKt'
+        attributes 'Main-Class': 'MainKt'
     }
 
     from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
